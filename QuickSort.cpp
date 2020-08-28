@@ -10,7 +10,7 @@ int partiotion(int *t,int l, int h,int &count)
     int pivot=t[l];
     while(left<right)
     {
-        while(t[left]<pivot)
+        while(t[left]<=pivot)
             left++;
         while(t[right]>pivot)
             right--;
