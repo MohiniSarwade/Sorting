@@ -2,13 +2,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int merge(int *a,int l,int m,int h)
+int merge(int a[],int l,int m,int h)
 {
-	int i=l,j=m+1,k=0,count;
+	int i=l,j=m+1,k=0,count=0;
 	int b[10];
 	while(i<=m && j<=h)
 	{
-		if(a[i]<a[j])
+		if(a[i]<=a[j])
 		{
 			b[k++]=a[i++];
 		}
@@ -35,23 +35,23 @@ int merge(int *a,int l,int m,int h)
 	}
 return count;
 }
-int mergeSort(int *a, int l,int r)
+int mergeSort(int a[], int l,int r)
 {
-    int inv;
+    int inv=0;
     if(l<r)
     {
     int mid=(l+r)/2;
-    mergeSort(a,l,mid);
-    mergeSort(a,mid+1,r);
-    inv=merge(a,l,mid,r);
+    inv+=mergeSort(a,l,mid);
+    inv+=mergeSort(a,mid+1,r);
+    inv+=merge(a,l,mid,r);
     }
     return inv;
 }
 int main()
 {
     cout<<"Merge sort "<<endl;
-    int n=9;
-    int a[n]={10,4,43,5,57,91,45,9,7};
+    int n=5;
+    int a[n]={2,1,3,1,2};
     
     int r=mergeSort(a,0,n-1);
     
@@ -60,3 +60,4 @@ int main()
     cout<<endl<<"Total number of inversions "<<r<<endl;
     return 0;
 }
+
